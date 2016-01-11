@@ -106,7 +106,7 @@ function loadInlineTemplate(tpl, data) {
           description: '#' + curr.language,
           url: '' + curr.html_url,
           thumb_url: '' + curr.owner.avatar_url,
-          message_text: '🗄 [' + curr.name + '](' + curr.html_url + ') by' + ('[' + curr.owner.login + '](' + curr.owner.html_url + ')') + (' in #' + curr.language + '\n⭐️ ' + curr.stargazers_count + ' Stars\n📥 [Clone](' + curr.clone_url + ')\n'),
+          message_text: '🗄 [' + curr.name + '](' + curr.html_url + ') by ' + ('[' + curr.owner.login + '](' + curr.owner.html_url + ')') + (' in #' + curr.language + '\n⭐️ ' + curr.stargazers_count + ' Stars\n📥 [Clone](' + curr.clone_url + ')\n'),
           parse_mode: 'Markdown'
         }]);
       }, []);
@@ -123,7 +123,7 @@ function loadInlineTemplate(tpl, data) {
           description: '👤 Assigned to ' + (curr.assignee ? curr.assignee.login : 'nobody'),
           url: '' + curr.html_url,
           thumb_url: '' + (curr.assignee ? curr.assignee.avatar_url : ''),
-          message_text: '🗄 [' + curr.title + '](' + curr.html_url + ')' + ('by [' + curr.user.login + '](' + curr.user.html_url + ')') + (' ' + (curr.state === 'open' ? '⚪️' : '⚫️') + '\n👤 Assigned to ' + (curr.assignee ? '[' + curr.assignee.login + '](' + curr.assignee.html_url + ')' : 'nobody') + '\n💬 ' + curr.comments + ' ' + (curr.comments === 1 ? 'Comments' : 'Comment') + '\n'),
+          message_text: '🗄 [' + curr.title + '](' + curr.html_url + ') ' + ('by [' + curr.user.login + '](' + curr.user.html_url + ')') + (' ' + (curr.state === 'open' ? '⚪️' : '⚫️') + '\n👤 Assigned to ' + (curr.assignee ? '[' + curr.assignee.login + '](' + curr.assignee.html_url + ')' : 'nobody') + '\n💬 ' + curr.comments + ' ' + (curr.comments === 1 ? 'Comments' : 'Comment') + '\n'),
           parse_mode: 'Markdown'
         }]);
       }, []);

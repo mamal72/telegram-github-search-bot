@@ -125,7 +125,7 @@ export function loadInlineTemplate(tpl, data) {
             description: `#${curr.language}`,
             url: `${curr.html_url}`,
             thumb_url: `${curr.owner.avatar_url}`,
-            message_text: `🗄 [${curr.name}](${curr.html_url}) by` +
+            message_text: `🗄 [${curr.name}](${curr.html_url}) by ` +
 `[${curr.owner.login}](${curr.owner.html_url})` +
 ` in #${curr.language}
 ⭐️ ${curr.stargazers_count} Stars
@@ -150,7 +150,7 @@ export function loadInlineTemplate(tpl, data) {
             description: `👤 Assigned to ${curr.assignee ? curr.assignee.login : 'nobody'}`,
             url: `${curr.html_url}`,
             thumb_url: `${curr.assignee ? curr.assignee.avatar_url : ''}`,
-            message_text: `🗄 [${curr.title}](${curr.html_url})` +
+            message_text: `🗄 [${curr.title}](${curr.html_url}) ` +
 `by [${curr.user.login}](${curr.user.html_url})` +
 ` ${curr.state === 'open' ? '⚪️' : '⚫️'}
 👤 Assigned to ${curr.assignee ?
