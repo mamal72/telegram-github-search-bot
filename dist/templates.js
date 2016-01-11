@@ -27,7 +27,7 @@ function loadTemplate(tpl, data) {
   var renderData = undefined;
   switch (tpl) {
     case 'users':
-      typeName = data.total_count === 1 ? 'users' : 'user';
+      typeName = data.total_count !== 1 ? 'users' : 'user';
       renderData = _extends({}, data, { typeName: typeName });
       itemsTemplate = renderData.items.reduce(function (prev, curr, index) {
         return prev + '\n' + (index + 1) + '.\n👤 [' + curr.login + '](' + curr.html_url + ')\n[Repos](https://github.com/' + curr.login + '?tab=repositories) | ' + ('[Activity](https://github.com/' + curr.login + '?tab=activity) | [Avatar](' + curr.avatar_url + ')\n');
@@ -35,7 +35,7 @@ function loadTemplate(tpl, data) {
       break;
 
     case 'repos':
-      typeName = data.total_count === 1 ? 'repos' : 'repo';
+      typeName = data.total_count !== 1 ? 'repos' : 'repo';
       renderData = _extends({}, data, { typeName: typeName });
       itemsTemplate = renderData.items.reduce(function (prev, curr, index) {
         return prev + '\n' + (index + 1) + '.\n🗄 [' + curr.name + '](' + curr.html_url + ') by [' + curr.owner.login + '](' + curr.owner.html_url + ')' + (' in #' + curr.language + '\n⭐️ ' + curr.stargazers_count + ' Stars\n📥 [Clone](' + curr.clone_url + ')\n');
@@ -43,7 +43,7 @@ function loadTemplate(tpl, data) {
       break;
 
     case 'issues':
-      typeName = data.total_count === 1 ? 'issues' : 'issue';
+      typeName = data.total_count !== 1 ? 'issues' : 'issue';
       renderData = _extends({}, data, { typeName: typeName });
       itemsTemplate = renderData.items.reduce(function (prev, curr, index) {
         return prev + '\n' + (index + 1) + '.\n🗄 [' + curr.title + '](' + curr.html_url + ') by [' + curr.user.login + '](' + curr.user.html_url + ')' + (' ' + (curr.state === 'open' ? '⚪️' : '⚫️') + '\n👤 Assigned to ' + (curr.assignee ? '[' + curr.assignee.login + '](' + curr.assignee.html_url + ')' : 'nobody') + '\n💬 ' + curr.comments + ' ' + (curr.comments === 1 ? 'Comments' : 'Comment') + '\n');
@@ -96,7 +96,7 @@ function loadInlineTemplate(tpl, data) {
       return rendered;
 
     case 'repos':
-      typeName = data.total_count === 1 ? 'repos' : 'repo';
+      typeName = data.total_count !== 1 ? 'repos' : 'repo';
       renderData = _extends({}, data, { typeName: typeName });
       rendered = renderData.items.reduce(function (prev, curr, index) {
         return [].concat(_toConsumableArray(prev), [{
@@ -113,7 +113,7 @@ function loadInlineTemplate(tpl, data) {
       return rendered;
 
     case 'issues':
-      typeName = data.total_count === 1 ? 'issues' : 'issue';
+      typeName = data.total_count !== 1 ? 'issues' : 'issue';
       renderData = _extends({}, data, { typeName: typeName });
       rendered = renderData.items.reduce(function (prev, curr, index) {
         return [].concat(_toConsumableArray(prev), [{
@@ -123,7 +123,7 @@ function loadInlineTemplate(tpl, data) {
           description: '👤 Assigned to ' + (curr.assignee ? curr.assignee.login : 'nobody'),
           url: '' + curr.html_url,
           thumb_url: '' + (curr.assignee ? curr.assignee.avatar_url : ''),
-          message_text: '🗄 [' + curr.title + '](' + curr.html_url + ') ' + ('by [' + curr.user.login + '](' + curr.user.html_url + ')') + (' ' + (curr.state === 'open' ? '⚪️' : '⚫️') + '\n👤 Assigned to ' + (curr.assignee ? '[' + curr.assignee.login + '](' + curr.assignee.html_url + ')' : 'nobody') + '\n💬 ' + curr.comments + ' ' + (curr.comments === 1 ? 'Comments' : 'Comment') + '\n'),
+          message_text: '🗄 [' + curr.title + '](' + curr.html_url + ') ' + ('by [' + curr.user.login + '](' + curr.user.html_url + ')') + (' ' + (curr.state === 'open' ? '⚪️' : '⚫️') + '\n👤 Assigned to ' + (curr.assignee ? '[' + curr.assignee.login + '](' + curr.assignee.html_url + ')' : 'nobody') + '\n💬 ' + curr.comments + ' ' + (curr.comments !== 1 ? 'Comments' : 'Comment') + '\n'),
           parse_mode: 'Markdown'
         }]);
       }, []);

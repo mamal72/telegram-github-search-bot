@@ -15,7 +15,7 @@ You can try with some other keywords.`;
   let renderData;
   switch (tpl) {
     case 'users':
-      typeName = data.total_count === 1 ? 'users' : 'user';
+      typeName = data.total_count !== 1 ? 'users' : 'user';
       renderData = { ...data, typeName };
       itemsTemplate = renderData.items.reduce((prev, curr, index) => {
         return `${prev}
@@ -28,7 +28,7 @@ ${index + 1}.
       break;
 
     case 'repos':
-      typeName = data.total_count === 1 ? 'repos' : 'repo';
+      typeName = data.total_count !== 1 ? 'repos' : 'repo';
       renderData = { ...data, typeName };
       itemsTemplate = renderData.items.reduce((prev, curr, index) => {
         return `${prev}
@@ -42,7 +42,7 @@ ${index + 1}.
       break;
 
     case 'issues':
-      typeName = data.total_count === 1 ? 'issues' : 'issue';
+      typeName = data.total_count !== 1 ? 'issues' : 'issue';
       renderData = { ...data, typeName };
       itemsTemplate = renderData.items.reduce((prev, curr, index) => {
         return `${prev}
@@ -113,7 +113,7 @@ export function loadInlineTemplate(tpl, data) {
       return rendered;
 
     case 'repos':
-      typeName = data.total_count === 1 ? 'repos' : 'repo';
+      typeName = data.total_count !== 1 ? 'repos' : 'repo';
       renderData = { ...data, typeName };
       rendered = renderData.items.reduce((prev, curr, index) => {
         return [
@@ -138,7 +138,7 @@ export function loadInlineTemplate(tpl, data) {
       return rendered;
 
     case 'issues':
-      typeName = data.total_count === 1 ? 'issues' : 'issue';
+      typeName = data.total_count !== 1 ? 'issues' : 'issue';
       renderData = { ...data, typeName };
       rendered = renderData.items.reduce((prev, curr, index) => {
         return [
@@ -155,7 +155,7 @@ export function loadInlineTemplate(tpl, data) {
 ` ${curr.state === 'open' ? '⚪️' : '⚫️'}
 👤 Assigned to ${curr.assignee ?
 '[' + curr.assignee.login + '](' + curr.assignee.html_url + ')' : 'nobody'}
-💬 ${curr.comments} ${curr.comments === 1 ? 'Comments' : 'Comment'}
+💬 ${curr.comments} ${curr.comments !== 1 ? 'Comments' : 'Comment'}
 `,
             parse_mode: 'Markdown'
           }
